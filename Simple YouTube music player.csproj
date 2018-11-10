@@ -1,0 +1,190 @@
+﻿<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProjectGuid>{95C37064-E8C5-4498-B13B-50F37BF7CB9A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>WindowsApplication</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup>
+    <RootNamespace>Simple_YouTube_music_player</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsFormsApp2\File.cs" />
+    <Compile Include="WindowsFormsApp2\Form1.cs" />
+    <Compile Include="WindowsFormsApp2\Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsFormsApp2\obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="WindowsFormsApp2\obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="WindowsFormsApp2\obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="WindowsFormsApp2\obj\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="WindowsFormsApp2\obj\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="WindowsFormsApp2\obj\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="WindowsFormsApp2\obj\x86\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="WindowsFormsApp2\obj\x86\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="WindowsFormsApp2\obj\x86\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="WindowsFormsApp2\obj\x86\Release\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="WindowsFormsApp2\obj\x86\Release\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="WindowsFormsApp2\obj\x86\Release\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="WindowsFormsApp2\Program.cs" />
+    <Compile Include="WindowsFormsApp2\Properties\AssemblyInfo.cs" />
+    <Compile Include="WindowsFormsApp2\Properties\Resources.Designer.cs" />
+    <Compile Include="WindowsFormsApp2\Properties\Settings.Designer.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\SimpleYoutubeMusicPlayer\v15\.suo" />
+    <None Include=".vs\SimpleYoutubeMusicPlayer\v15\Server\sqlite3\db.lock" />
+    <None Include=".vs\SimpleYoutubeMusicPlayer\v15\Server\sqlite3\storage.ide" />
+    <None Include=".vs\SimpleYoutubeMusicPlayer\v15\Server\sqlite3\storage.ide-shm" />
+    <None Include=".vs\SimpleYoutubeMusicPlayer\v15\Server\sqlite3\storage.ide-wal" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="packages\MaterialSkin.0.2.1\MaterialSkin.0.2.1.nupkg" />
+    <None Include="WindowsFormsApp2\App.config" />
+    <None Include="WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe.config" />
+    <None Include="WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe.config" />
+    <None Include="WindowsFormsApp2\bin\x86\Debug\WindowsFormsApp2.exe.config" />
+    <None Include="WindowsFormsApp2\bin\x86\Debug\WindowsFormsApp2.rar" />
+    <None Include="WindowsFormsApp2\bin\x86\Release\Simple YouTube music player.exe.config" />
+    <None Include="WindowsFormsApp2\obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="WindowsFormsApp2\obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache" />
+    <None Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.GenerateResource.cache" />
+    <None Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.ResolveComReference.cache" />
+    <None Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csprojAssemblyReference.cache" />
+    <None Include="WindowsFormsApp2\obj\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.CoreCompileInputs.cache" />
+    <None Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.GenerateResource.cache" />
+    <None Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.ResolveComReference.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.csproj.CopyComplete" />
+    <None Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.csproj.CoreCompileInputs.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.csproj.GenerateResource.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.csproj.ResolveComReference.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\DesignTimeResolveAssemblyReferences.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.CopyComplete" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.CoreCompileInputs.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.GenerateResource.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.ResolveComReference.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csprojAssemblyReference.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\WindowsFormsApp2.csproj.CopyComplete" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\WindowsFormsApp2.csproj.CoreCompileInputs.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\WindowsFormsApp2.csproj.GenerateResource.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\WindowsFormsApp2.csproj.ResolveComReference.cache" />
+    <None Include="WindowsFormsApp2\obj\x86\Release\WindowsFormsApp2.csprojAssemblyReference.cache" />
+    <None Include="WindowsFormsApp2\packages.config" />
+    <None Include="WindowsFormsApp2\Properties\Settings.settings" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages\MaterialSkin.0.2.1\lib\MaterialSkin.dll" />
+    <Content Include="WindowsFormsApp2\bin\Debug\Nightcore_-_Ievan_Polkka_VSNS_Remix-QwdbFNGCkLw.mp4" />
+    <Content Include="WindowsFormsApp2\bin\Debug\WindowsFormsApp2.exe" />
+    <Content Include="WindowsFormsApp2\bin\Debug\WindowsFormsApp2.pdb" />
+    <Content Include="WindowsFormsApp2\bin\Release\WindowsFormsApp2.exe" />
+    <Content Include="WindowsFormsApp2\bin\Release\WindowsFormsApp2.pdb" />
+    <Content Include="WindowsFormsApp2\bin\x86\Debug\MaterialSkin.dll" />
+    <Content Include="WindowsFormsApp2\bin\x86\Debug\Newtonsoft.Json.dll" />
+    <Content Include="WindowsFormsApp2\bin\x86\Debug\Newtonsoft.Json.xml" />
+    <Content Include="WindowsFormsApp2\bin\x86\Debug\service.exe" />
+    <Content Include="WindowsFormsApp2\bin\x86\Debug\WindowsFormsApp2.exe" />
+    <Content Include="WindowsFormsApp2\bin\x86\Debug\WindowsFormsApp2.pdb" />
+    <Content Include="WindowsFormsApp2\bin\x86\MaterialSkin.dll" />
+    <Content Include="WindowsFormsApp2\bin\x86\Newtonsoft.Json.dll" />
+    <Content Include="WindowsFormsApp2\bin\x86\Newtonsoft.Json.xml" />
+    <Content Include="WindowsFormsApp2\bin\x86\Release\MaterialSkin.dll" />
+    <Content Include="WindowsFormsApp2\bin\x86\Release\Simple YouTube music player.exe" />
+    <Content Include="WindowsFormsApp2\bin\x86\Release\Simple YouTube music player.pdb" />
+    <Content Include="WindowsFormsApp2\Logo.ico" />
+    <Content Include="WindowsFormsApp2\obj\Debug\Interop.WMPLib.dll" />
+    <Content Include="WindowsFormsApp2\obj\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.csproj.FileListAbsolute.txt" />
+    <Content Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.exe" />
+    <Content Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.pdb" />
+    <Content Include="WindowsFormsApp2\obj\Release\Interop.WMPLib.dll" />
+    <Content Include="WindowsFormsApp2\obj\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.csproj.FileListAbsolute.txt" />
+    <Content Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.exe" />
+    <Content Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.pdb" />
+    <Content Include="WindowsFormsApp2\obj\x86\Debug\Interop.WMPLib.dll" />
+    <Content Include="WindowsFormsApp2\obj\x86\Debug\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.csproj.FileListAbsolute.txt" />
+    <Content Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.exe" />
+    <Content Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.pdb" />
+    <Content Include="WindowsFormsApp2\obj\x86\Release\Interop.WMPLib.dll" />
+    <Content Include="WindowsFormsApp2\obj\x86\Release\Simple YouTube music player.exe" />
+    <Content Include="WindowsFormsApp2\obj\x86\Release\Simple YouTube music player.pdb" />
+    <Content Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.FileListAbsolute.txt" />
+    <Content Include="WindowsFormsApp2\obj\x86\Release\TempPE\Properties.Resources.Designer.cs.dll" />
+    <Content Include="WindowsFormsApp2\obj\x86\Release\WindowsFormsApp2.csproj.FileListAbsolute.txt" />
+    <Content Include="WindowsFormsApp2\Resources\kisspng-computer-icons-download-favicon-save-icon-png-5ab0783fc5bea3.40732577152151455981.jpg" />
+    <Content Include="WindowsFormsApp2\Resources\noImg.jpg" />
+    <Content Include="WindowsFormsApp2\Resources\tenor.gif" />
+    <Content Include="WindowsFormsApp2\Resources\youtube-dl.exe" />
+    <Content Include="WindowsFormsApp2\SimpleYoutubeMusicPlayer.csproj" />
+    <Content Include="WindowsFormsApp2\SimpleYoutubeMusicPlayer.csproj.user" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="WindowsFormsApp2\Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Form1.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\Debug\WindowsFormsApp2.Properties.Resources.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.Form1.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\Release\WindowsFormsApp2.Properties.Resources.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.Form1.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\x86\Debug\WindowsFormsApp2.Properties.Resources.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.Form1.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.Properties.Resources.resources" />
+    <EmbeddedResource Include="WindowsFormsApp2\Properties\Resources.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".vs\WindowsFormsApp2\v15\Server\sqlite3\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>

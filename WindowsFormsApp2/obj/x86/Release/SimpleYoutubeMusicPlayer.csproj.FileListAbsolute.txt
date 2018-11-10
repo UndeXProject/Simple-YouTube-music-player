@@ -1,0 +1,14 @@
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\x86\Release\Simple YouTube music player.exe.config
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\x86\Release\Simple YouTube music player.exe
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\x86\Release\Simple YouTube music player.pdb
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\bin\x86\Release\MaterialSkin.dll
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\Interop.WMPLib.dll
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.ResolveComReference.cache
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.Form1.resources
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.Properties.Resources.resources
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.GenerateResource.cache
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.CoreCompileInputs.cache
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csproj.CopyComplete
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\Simple YouTube music player.exe
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\Simple YouTube music player.pdb
+C:\Users\undex\source\repos\WindowsFormsApp2\WindowsFormsApp2\obj\x86\Release\SimpleYoutubeMusicPlayer.csprojAssemblyReference.cache
