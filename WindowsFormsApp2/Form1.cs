@@ -7,14 +7,17 @@ using System.Text.RegularExpressions;
 using System.Drawing.Imaging;
 using System.Net;
 
-namespace WindowsFormsApp2
+namespace SimpleYoutubeMusicPlayer
+
 {
     public partial class Form1 : MaterialSkin.Controls.MaterialForm
     {
         WMPLib.WindowsMediaPlayer player = new WindowsMediaPlayer();
         string[] FileData = { "", "", "", "" };
+        Thread YouTubeThread;
         Boolean mute = true;
         Boolean load = false;
+        Boolean ThreadStatus = false;
         public Form1()
         {
             InitializeComponent();
@@ -70,6 +73,7 @@ namespace WindowsFormsApp2
             button2.Invoke((MethodInvoker)(() => button2.Enabled = true));
             button5.Invoke((MethodInvoker)(() => button5.Visible = true));
             load = true;
+            ThreadStatus = false;
             /*
              * label3.Text = FileData[1];
              * button1.Enabled = true;
@@ -82,8 +86,9 @@ namespace WindowsFormsApp2
             private void button1_Click(object sender, EventArgs e)
             {
             string url = textBox1.Text;
-            Thread mythread = new Thread(delegate () { GetDataFromUrl(url); });
-            mythread.Start();
+            YouTubeThread = new Thread(delegate () { GetDataFromUrl(url); });
+            YouTubeThread.Start();
+            ThreadStatus = true;
             pictureBox1.Image = Properties.Resources.loader;
             button1.Enabled = false;
             label5.Visible = true;
@@ -226,9 +231,7 @@ namespace WindowsFormsApp2
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //File.Delete(Application.StartupPath + "\\Newtonsoft.Json.dll");
-            //File.Delete(Application.StartupPath + "\\Newtonsoft.Json.xml");
-            //File.Delete(Application.StartupPath + "\\MaterialSkin.dll");
+            if (ThreadStatus) YouTubeThread.Abort(); // Kill running thread
         }
 
         private void pictureBox1_DoubleClick(object sender, EventArgs e)
@@ -269,6 +272,16 @@ namespace WindowsFormsApp2
         private void materialSingleLineTextField1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void notifyIcon1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Form1_Resize(object sender, EventArgs e)
+        {
+            
         }
     }
 }
