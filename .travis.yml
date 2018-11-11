@@ -1,0 +1,3 @@
+language: csharp
+solution: SimpleYoutubeMusicPlayer.sln
+os: windows
