@@ -15,9 +15,12 @@ namespace SimpleYoutubeMusicPlayer
         WMPLib.WindowsMediaPlayer player = new WindowsMediaPlayer();
         string[] FileData = { "", "", "", "" };
         Thread YouTubeThread;
+
         Boolean mute = true;
         Boolean load = false;
         Boolean ThreadStatus = false;
+        Boolean Playing = false;
+
         public Form1()
         {
             InitializeComponent();
@@ -70,7 +73,9 @@ namespace SimpleYoutubeMusicPlayer
             label3.Invoke((MethodInvoker)(() => label3.Text = FileData[0]));
             button1.Invoke((MethodInvoker)(() => button1.Enabled = true));
             label5.Invoke((MethodInvoker)(() => label5.Visible = false));
+
             button2.Invoke((MethodInvoker)(() => button2.Enabled = true));
+            
             button5.Invoke((MethodInvoker)(() => button5.Visible = true));
             load = true;
             ThreadStatus = false;
@@ -103,11 +108,19 @@ namespace SimpleYoutubeMusicPlayer
         private void button2_Click(object sender, EventArgs e)
         {
             player.controls.play();
+            Playing = true;
+
             label4.Text = player.controls.currentPositionString;
             timer2.Enabled = true;
+
             button3.Enabled = true;
             button4.Enabled = true;
             button2.Enabled = false;
+
+            playToolStripMenuItem.Enabled = false;
+            pauseToolStripMenuItem.Enabled = true;
+            stopToolStripMenuItem.Enabled = true;
+
             button3.Focus();
             button6.Enabled = true;
         }
@@ -117,20 +130,26 @@ namespace SimpleYoutubeMusicPlayer
             player.controls.pause();
             button2.Enabled = true;
             button3.Enabled = false;
+
+            playToolStripMenuItem.Enabled = true;
+            pauseToolStripMenuItem.Enabled = false;
+
             button2.Focus();
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
             player.controls.stop();
+            Playing = false;
+
             button3.Enabled = false;
             button4.Enabled = false;
-            button2.Enabled = true;
-        }
 
-        private void trackBar1_Scroll(object sender, EventArgs e)
-        {
-            
+            playToolStripMenuItem.Enabled = true;
+            pauseToolStripMenuItem.Enabled = false;
+            stopToolStripMenuItem.Enabled = false;
+
+            button2.Enabled = true;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -197,6 +216,10 @@ namespace SimpleYoutubeMusicPlayer
                 button2.Enabled = true;
                 button3.Enabled = false;
                 button4.Enabled = false;
+
+                playToolStripMenuItem.Enabled = true;
+                pauseToolStripMenuItem.Enabled = false;
+                stopToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -264,24 +287,38 @@ namespace SimpleYoutubeMusicPlayer
             pictureBox2.Visible = false;
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void materialSingleLineTextField1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
 
         }
 
-        private void Form1_Resize(object sender, EventArgs e)
+        private void button7_Click(object sender, EventArgs e)
         {
-            
+            this.Hide();
+            notifyIcon1.Visible = true;
+            if (Playing)
+            {
+                notifyIcon1.BalloonTipText = "Играет: "+FileData[0];
+            }
+            else
+            {
+                notifyIcon1.BalloonTipText = "Created by UndeX Project";
+            }
+            notifyIcon1.ShowBalloonTip(1000);
+        }
+
+        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon1.Visible = false;
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Playing) player.controls.stop();
+            if (ThreadStatus) YouTubeThread.Abort(); // Kill running thread
+            Application.Exit();
         }
     }
 }
