@@ -97,9 +97,8 @@ namespace SimpleYoutubeMusicPlayer
                 saveFileDialog1.FileName = FileData[3].Replace(".mp4", ".mp3").Replace(".m4a", ".mp3").Replace(".webm", ".mp3").Replace("-" + YouTube_ID, "");
                 label3.Invoke((MethodInvoker)(() => label3.Text = FileData[0]));
                 button1.Invoke((MethodInvoker)(() => button1.Enabled = true));
-
+                label5.Invoke((MethodInvoker)(() => label5.Visible = false));
                 button2.Invoke((MethodInvoker)(() => button2.Enabled = true));
-
                 button5.Invoke((MethodInvoker)(() => button5.Visible = true));
                 load = true;
             }
