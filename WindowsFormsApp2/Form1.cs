@@ -16,6 +16,8 @@ namespace SimpleYoutubeMusicPlayer
         string[] FileData = { "", "", "", "" };
         Thread YouTubeThread;
 
+        String YouTube_ID;
+
         Boolean mute = true;
         Boolean load = false;
         Boolean ThreadStatus = false;
@@ -45,13 +47,27 @@ namespace SimpleYoutubeMusicPlayer
                 text = text.Replace("list=" + match.Groups[1].Value, "");
                 //MessageBox.Show(match.Groups[1].Value);
             }
+
+            regex = new Regex(@"\?v=(\w+)");
+            foreach (Match match in regex.Matches(text))
+            {
+                YouTube_ID = match.Groups[1].Value;
+                //MessageBox.Show(match.Groups[1].Value);
+            }
+            regex = new Regex(@"\.be\/(\w+)");
+            foreach (Match match in regex.Matches(text))
+            {
+                YouTube_ID = match.Groups[1].Value;
+                //MessageBox.Show(match.Groups[1].Value);
+            }
+
             return text;
         }
 
         private void GetDataFromUrl(string url)
         {
             url = NormalizeURL(url);
-            //MessageBox.Show(url);
+            //MessageBox.Show(YouTube_ID);
             
             if (!System.IO.File.Exists(Application.StartupPath + "\\cache.tmp"))
             {
@@ -67,17 +83,26 @@ namespace SimpleYoutubeMusicPlayer
 
         public void SetData()
         {
-            pictureBox1.Load(FileData[2]);
-            player.URL = FileData[1]; player.controls.stop();
-            saveFileDialog1.FileName = FileData[3].Replace(".mp4",".mp3").Replace(".m4a",".mp3").Replace(".webm",".mp3");
-            label3.Invoke((MethodInvoker)(() => label3.Text = FileData[0]));
-            button1.Invoke((MethodInvoker)(() => button1.Enabled = true));
-            label5.Invoke((MethodInvoker)(() => label5.Visible = false));
+            if (FileData[0] == "ERROR: requested format not available")
+            {
+                MessageBox.Show("Ошибка получения данных!\r\n"+"Возможно вы указали ссылку на стрим");
+                button1.Invoke((MethodInvoker)(() => button1.Enabled = true));
+                label5.Invoke((MethodInvoker)(() => label5.Visible = false));
+                pictureBox1.Image = Properties.Resources.noImg;
+            }
+            else
+            {
+                pictureBox1.Load(FileData[2]);
+                player.URL = FileData[1]; player.controls.stop();
+                saveFileDialog1.FileName = FileData[3].Replace(".mp4", ".mp3").Replace(".m4a", ".mp3").Replace(".webm", ".mp3").Replace("-" + YouTube_ID, "");
+                label3.Invoke((MethodInvoker)(() => label3.Text = FileData[0]));
+                button1.Invoke((MethodInvoker)(() => button1.Enabled = true));
 
-            button2.Invoke((MethodInvoker)(() => button2.Enabled = true));
-            
-            button5.Invoke((MethodInvoker)(() => button5.Visible = true));
-            load = true;
+                button2.Invoke((MethodInvoker)(() => button2.Enabled = true));
+
+                button5.Invoke((MethodInvoker)(() => button5.Visible = true));
+                load = true;
+            }
             ThreadStatus = false;
             /*
              * label3.Text = FileData[1];
