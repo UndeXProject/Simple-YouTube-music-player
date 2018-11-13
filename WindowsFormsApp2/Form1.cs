@@ -112,21 +112,43 @@ namespace SimpleYoutubeMusicPlayer
              */
         }
 
-            private void button1_Click(object sender, EventArgs e)
+        private Boolean CheckField(string text)
+        {
+            Regex CuteLink = new Regex(@"https\:\/\/youtu\.be(.+)");
+            Regex Link = new Regex(@"https\:/\/www\.youtube\.com(.+)");
+
+            if (!string.IsNullOrEmpty(text))
+            {
+                if (CuteLink.Matches(text).Count > 0 || Link.Matches(text).Count > 0) return true; else return false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
             {
             string url = textBox1.Text;
-            YouTubeThread = new Thread(delegate () { GetDataFromUrl(url); });
-            YouTubeThread.Start();
-            ThreadStatus = true;
-            pictureBox1.Image = Properties.Resources.loader;
-            button1.Enabled = false;
-            label5.Visible = true;
+            if (CheckField(url))
+            {
+                YouTubeThread = new Thread(delegate () { GetDataFromUrl(url); });
+                YouTubeThread.Start();
+                ThreadStatus = true;
+                pictureBox1.Image = Properties.Resources.loader;
+                button1.Enabled = false;
+                label5.Visible = true;
 
-            player.controls.currentPosition = 0;
-            player.controls.stop();
-            button2.Enabled = false;
-            button3.Enabled = false;
-            button4.Enabled = false;
+                player.controls.currentPosition = 0;
+                player.controls.stop();
+                button2.Enabled = false;
+                button3.Enabled = false;
+                button4.Enabled = false;
+            }
+            else
+            {
+                MessageBox.Show("URL is not correct!");
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
