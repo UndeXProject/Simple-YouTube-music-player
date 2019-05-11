@@ -1,6 +1,6 @@
 theme: jekyll-theme-slate
 title: "Simple YouTube music player"
 description: "Free music player for YouTube video"
-show_downloads: true
+show_downloads: false
 github:
   zip_url: https://github.com/UndeXProject/Simple-YouTube-music-player/releases/download/v2.0.0.4/Release.zip
