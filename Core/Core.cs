@@ -85,7 +85,7 @@ namespace Simple_YouTube_Music_Player
                 }
                 wc.DownloadFileAsync(
                     // Param1 = Link of file
-                    new System.Uri("https://raw.githubusercontent.com/UndeXProject/Simple-YouTube-music-player/master/update.pkg"),
+                    new System.Uri("https://raw.githubusercontent.com/UndeXProject/Simple-YouTube-music-player/master/build/update.pkg"),
                     // Param2 = Path to save
                     UpdateFileName
                 );
