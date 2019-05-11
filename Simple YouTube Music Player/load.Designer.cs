@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(load));
             this.pictureBoxLogo = new System.Windows.Forms.PictureBox();
             this.opacityTimer = new System.Windows.Forms.Timer(this.components);
             this.opacityDebugText = new System.Windows.Forms.Label();
@@ -84,6 +85,7 @@
             this.Controls.Add(this.delayDebugText);
             this.Controls.Add(this.opacityDebugText);
             this.Controls.Add(this.pictureBoxLogo);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "load";
             this.Opacity = 0D;
             this.TransparencyKey = System.Drawing.Color.Lime;

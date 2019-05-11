@@ -36,11 +36,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Bass.Net">
-      <HintPath>D:\Bass24.Net\Bass.Net.dll</HintPath>
+      <HintPath>D:\OneDrive\Projects\SYMPv2\Simple YouTube Music Player\Simple YouTube Music Player\bin\Debug\Bass.Net.dll</HintPath>
     </Reference>
     <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\Core.dll</HintPath>
+      <HintPath>D:\OneDrive\Projects\SYMPv2\Simple YouTube Music Player\Simple YouTube Music Player\bin\Debug\Core.dll</HintPath>
+    </Reference>
+    <Reference Include="File">
+      <HintPath>D:\OneDrive\Projects\SYMPv2\Simple YouTube Music Player\Simple YouTube Music Player\bin\Debug\File.dll</HintPath>
     </Reference>
     <Reference Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\VideoLibrary.2.0.3\lib\netstandard1.1\libvideo.dll</HintPath>
@@ -59,7 +62,7 @@
     </Reference>
     <Reference Include="playerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>bin\Debug\playerControl.dll</HintPath>
+      <HintPath>D:\OneDrive\Projects\SYMPv2\Simple YouTube Music Player\Simple YouTube Music Player\bin\Debug\playerControl.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -130,6 +133,9 @@
     <Folder Include="Res\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bass.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Images\Control\001-next.png" />
     <Content Include="Images\Control\002-music.png" />
     <Content Include="Images\Control\003-stop.png" />
