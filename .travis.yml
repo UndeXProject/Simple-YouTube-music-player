@@ -1,5 +1,9 @@
 language: csharp
 solution: Simple_YouTube_Music_Player.sln
-os: windows
-install:
-  - nuget restore Simple_YouTube_Music_Player.sln
+mono: none
+dotnet: 2.1
+before_install:
+  - dotnet restore
+script:
+  - dotnet build
+  - dotnet test ./Simple YouTube Music Player/Simple YouTube Music Player.csproj
