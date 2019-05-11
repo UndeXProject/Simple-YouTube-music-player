@@ -1,5 +1,0 @@
-C:\Users\undex\source\repos\WindowsFormsApp2\obj\x86\Debug\Simple YouTube music player.csprojAssemblyReference.cache
-C:\Users\undex\source\repos\WindowsFormsApp2\obj\x86\Debug\SimpleYoutubeMusicPlayer.Form1.resources
-C:\Users\undex\source\repos\WindowsFormsApp2\obj\x86\Debug\Simple_YouTube_music_player.WindowsFormsApp2.Properties.Resources.resources
-C:\Users\undex\source\repos\WindowsFormsApp2\obj\x86\Debug\Simple YouTube music player.csproj.GenerateResource.cache
-C:\Users\undex\source\repos\WindowsFormsApp2\obj\x86\Debug\Simple YouTube music player.csproj.CoreCompileInputs.cache
