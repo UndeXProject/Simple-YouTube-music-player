@@ -2,7 +2,7 @@
 
 [![N|UndeXProject](https://i.imgur.com/ilF6GCc.png)](https://github.com/UndeXProject)
 
-> Статус проекта: В разработке
+> Статус проекта: [![Build Status](https://travis-ci.org/UndeXProject/Simple-YouTube-music-player.svg?branch=master)](https://travis-ci.org/UndeXProject/Simple-YouTube-music-player)
 
 ### Загрузить
 | Версия | Сылка |
