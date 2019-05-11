@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple YouTube Music Player", "Simple YouTube Music Player\Simple YouTube Music Player.csproj", "{C9375AAD-FD9C-446B-823F-DBE82167D585}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simple YouTube Music Player", "Simple_YouTube_Music_Player\Simple_YouTube_Music_Player.csproj", "{C9375AAD-FD9C-446B-823F-DBE82167D585}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "File", "File\File.csproj", "{0CFDC155-625C-43CB-A27E-72C2B5D41006}"
 EndProject
