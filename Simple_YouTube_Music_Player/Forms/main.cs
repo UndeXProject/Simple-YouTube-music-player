@@ -423,5 +423,14 @@ namespace Simple_YouTube_Music_Player.Forms
                 MessageBox.Show(message, "Информация о программе", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
         }
+
+        private void LabelCurrentTrack_Click(object sender, EventArgs e)
+        {
+            if (ready)
+            {
+                var id = Functions.playlist[Functions.PlaylistPosition];
+                Clipboard.SetText("https://youtu.be/" + id[5]);
+            }
+        }
     }
 }

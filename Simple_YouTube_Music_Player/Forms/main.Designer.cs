@@ -248,6 +248,7 @@
             this.labelCurrentTrack.TabIndex = 6;
             this.labelCurrentTrack.Text = "      ";
             this.labelCurrentTrack.Visible = false;
+            this.labelCurrentTrack.Click += new System.EventHandler(this.LabelCurrentTrack_Click);
             // 
             // positionTrackTimer
             // 
