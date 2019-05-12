@@ -136,6 +136,7 @@ namespace Simple_YouTube_Music_Player.Forms
             ready = true;
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroProgressSpinner1.Visible = false));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => spinerTimer.Enabled = false));
+            metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(labelCurrentTrack, "Кликните для копирования ссылки на видео")));
             playerControl.playerControl.SetVolume(Functions.Volume);
         }
 
