@@ -106,7 +106,6 @@ namespace Simple_YouTube_Music_Player
                 if (match.Groups[1].Length > 0)
                 {
                     MessageBox.Show("Ошибка получения данных!\r\n" + match.Groups[1].Value, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    _response[i] = null;
                 }
                 else
                 {
