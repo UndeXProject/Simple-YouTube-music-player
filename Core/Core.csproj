@@ -31,13 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="File, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="File, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Simple_YouTube_Music_Player\bin\Debug\File.dll</HintPath>
     </Reference>
-    <Reference Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+	<Reference Condition="'$(Configuration)' == 'Release'" Include="File, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Simple_YouTube_Music_Player\bin\Release\File.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libvideo\bin\Debug\netstandard1.1\libvideo.dll</HintPath>
+    </Reference>
+	<Reference Condition="'$(Configuration)' == 'Release'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\libvideo\bin\Release\netstandard1.1\libvideo.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -45,9 +53,6 @@
     <Reference Include="System.IO.Compression" />
     <Reference Include="System.IO.Compression.FileSystem" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.InteropServices.RuntimeInformation, Version=4.0.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Runtime.InteropServices.RuntimeInformation.4.3.0\lib\net45\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
-    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
