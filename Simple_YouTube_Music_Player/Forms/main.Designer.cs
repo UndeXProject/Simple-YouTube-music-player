@@ -108,7 +108,7 @@
             this.pictureBoxSpectrum.TabIndex = 3;
             this.pictureBoxSpectrum.TabStop = false;
             this.pictureBoxSpectrum.Click += new System.EventHandler(this.PictureBoxSpectrum_Click);
-            this.pictureBoxSpectrum.DoubleClick += new System.EventHandler(this.PictureBoxSpectrum_DoubleClick);
+            this.pictureBoxSpectrum.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBoxSpectrum_MouseDown);
             // 
             // pictureBox1
             // 

@@ -10,6 +10,8 @@ using MetroFramework.Controls;
 using System.Net;
 using System.Threading;
 using System.IO;
+using System.Text.RegularExpressions;
+
 namespace Simple_YouTube_Music_Player.Forms
 {
     public partial class main : MetroForm
@@ -47,19 +49,32 @@ namespace Simple_YouTube_Music_Player.Forms
         private void urlTextBox_KeyDown(object sender, KeyEventArgs e)
         {
             MetroTextBox edit = (MetroTextBox)sender;
+            
             if (e.KeyCode == Keys.Enter && !String.IsNullOrWhiteSpace(edit.Text))
             {
-                edit.Enabled = false;
-                Functions.playlist.Clear();
-                if (edit.Text.IndexOf("&list") > 0 || edit.Text.IndexOf("?list") > 0)
+                var link = edit.Text;
+                Regex reg = new Regex("htt(p|ps)://(.*)youtu(.*).(be|com)/(.*)");
+                Match math = reg.Match(link);
+
+                if (math.Groups[1].Length > 0)
                 {
-                    loaderPic.Visible = true;
+                    edit.Enabled = false;
+                    Functions.playlist.Clear();
+                    if (edit.Text.IndexOf("&list") > 0 || edit.Text.IndexOf("?list") > 0)
+                    {
+                        loaderPic.Visible = true;
+                    }
+                    ready = false;
+                    metroProgressSpinner1.Visible = true;
+                    spinerTimer.Enabled = true;
+                    edit.Text = link;
+                    Thread general = new Thread(new ParameterizedThreadStart(generalThread));
+                    general.Start(edit);
                 }
-                ready = false;
-                metroProgressSpinner1.Visible = true;
-                spinerTimer.Enabled = true;
-                Thread general = new Thread(new ParameterizedThreadStart(generalThread));
-                general.Start(edit);
+                else
+                {
+                    MessageBox.Show("Поддерживаются только ссылки на видео или плейлист YouTube", "Внимание", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -456,6 +471,26 @@ namespace Simple_YouTube_Music_Player.Forms
                     byte[] bytes = ms.ToArray();
                     System.IO.File.WriteAllBytes(dialog.FileName, bytes);
                 }
+            }
+        }
+
+        private void PictureBoxSpectrum_MouseDown(object sender, MouseEventArgs e)
+        {
+            if(e.Button == MouseButtons.Right)
+            {
+                ColorDialog color1 = new ColorDialog();
+                ColorDialog color2 = new ColorDialog();
+                var message = MessageBox.Show("Настроить цвета спектра?\rПервый цвет - низ градиента\r\nВторой - верх градиента", "Настроить цвета?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (message == DialogResult.No)
+                    return;
+                var result = color1.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return;
+                result = color2.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return;
+                Functions.SpectrumColor1 = color1.Color;
+                Functions.SpectrumColor2 = color2.Color;
             }
         }
     }
