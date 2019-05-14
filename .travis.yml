@@ -1,6 +1,8 @@
 language: csharp
 os: windows
 mono: none
+install:
+  - nuget restore Simple_YouTube_Music_Player.sln
 env:
   - MSBUILD_PATH="c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
 script:
