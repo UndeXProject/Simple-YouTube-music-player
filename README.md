@@ -1,4 +1,5 @@
 # Simple YouTube music player
+[![Build Status](https://travis-ci.org/UndeXProject/Simple-YouTube-music-player.svg?branch=master)](https://travis-ci.org/UndeXProject/Simple-YouTube-music-player)
 ### Описание
 
 > Simple YouTube music player предназначен для прослушивания
