@@ -70,7 +70,7 @@ namespace updater
                         file.ExtractToFile(Path.Combine(AppDir, file.Name), true);
                         status.Text = "Распаковка "+ file.Name;
                     }
-                    catch(Exception s)
+                    catch
                     {
                         status.Text = "Ошибка распаковки " + file.Name;
                         errors = true;
