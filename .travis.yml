@@ -1,9 +1,8 @@
 language: csharp
-solution: Simple_YouTube_Music_Player.sln
+os: windows
 mono: none
-dotnet: 2.1
-before_install:
-  - dotnet restore
+env:
+  - MSBUILD_PATH="c:\Program Files (x86)\Microsoft Visual Studio\2017\BuildTools\MSBuild\15.0\Bin"
 script:
-  - dotnet build
-  - dotnet test ./Simple YouTube Music Player/Simple YouTube Music Player.csproj
+  - export PATH=$MSBUILD_PATH:$PATH
+  - ./build.bat

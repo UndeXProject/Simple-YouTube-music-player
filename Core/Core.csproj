@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="File, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Simple YouTube Music Player\bin\Debug\File.dll</HintPath>
+      <HintPath>..\Simple_YouTube_Music_Player\bin\Debug\File.dll</HintPath>
     </Reference>
     <Reference Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
