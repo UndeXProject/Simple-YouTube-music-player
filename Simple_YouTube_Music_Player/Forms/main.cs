@@ -137,6 +137,8 @@ namespace Simple_YouTube_Music_Player.Forms
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroProgressSpinner1.Visible = false));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => spinerTimer.Enabled = false));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(labelCurrentTrack, "Кликните для копирования ссылки на видео")));
+            metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBox1, "Двойной клик для сохранения")));
+            metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBoxSpectrum, "Клик - смена визуализации, Двойной клик - настройка цвета")));
             playerControl.playerControl.SetVolume(Functions.Volume);
         }
 
@@ -431,6 +433,29 @@ namespace Simple_YouTube_Music_Player.Forms
             {
                 var id = Functions.playlist[Functions.PlaylistPosition];
                 Clipboard.SetText("https://youtu.be/" + id[5]);
+            }
+        }
+
+        private void pictureBox1_DoubleClick(object sender, EventArgs e)
+        {
+            if (ready)
+            {
+                SaveFileDialog dialog = new SaveFileDialog();
+                dialog.AddExtension = true;
+                dialog.DefaultExt = ".jpg";
+                dialog.Filter = "Изображение jpeg (*.jpg)|*.jpg|Все файлы|*.*";
+                dialog.Title = "Сохранить превью \"" + Functions.playlist[Functions.PlaylistPosition][0] + "\"";
+                dialog.FileName = Functions.playlist[Functions.PlaylistPosition][0];
+                var result = dialog.ShowDialog();
+                if (result == DialogResult.Cancel)
+                    return;
+                Image img = new Bitmap((new WebClient()).OpenRead(Functions.playlist[Functions.PlaylistPosition][2])); ;
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    img.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    byte[] bytes = ms.ToArray();
+                    System.IO.File.WriteAllBytes(dialog.FileName, bytes);
+                }
             }
         }
     }
