@@ -35,21 +35,35 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Bass.Net">
+	<Reference Condition="'$(Configuration)' == 'Debug'" Include="Bass.Net">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Bass.Net.dll</HintPath>
     </Reference>
-    <Reference Include="Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Bass.Net.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Core.dll</HintPath>
     </Reference>
-    <Reference Include="File">
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Core.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="File">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\File.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="File">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\File.dll</HintPath>
     </Reference>
     <Reference Condition="'$(Configuration)' == 'Debug'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libvideo\bin\Debug\netstandard1.1\libvideo.dll</HintPath>
     </Reference>
-	<Reference Condition="'$(Configuration)' == 'Release'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libvideo\bin\Release\netstandard1.1\libvideo.dll</HintPath>
     </Reference>
@@ -65,9 +79,21 @@
     <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\Simple_YouTube_Music_Player\MetroFramework.Fonts.dll</HintPath>
     </Reference>
-    <Reference Include="playerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+	<Reference Condition="'$(Configuration)' == 'Debug'" Include="playerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\playerControl.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="playerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\playerControl.dll</HintPath>
+    </Reference>
+	<Reference Condition="'$(Configuration)' == 'Debug'" Include="DiscordRPC">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\DiscordRPC.dll</HintPath>
+    </Reference>
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="DiscordRPC">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\DiscordRPC.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
@@ -86,6 +112,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\Discord.cs" />
     <Compile Include="Classes\Functions.cs" />
     <Compile Include="Forms\main.cs">
       <SubType>Form</SubType>
