@@ -18,6 +18,7 @@ namespace Simple_YouTube_Music_Player.Classes
         public static string AppDataSoft = Path.Combine(AppData, appName);
         public static string verCore { get; set; }
         public static string verBass { get; set; }
+        public static string JoinID { get; set; }
         public static int updateDownloadProgress { get; internal set; }
 
         public static List<string[]> playlist = new List<string[]>();

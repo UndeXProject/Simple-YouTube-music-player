@@ -60,7 +60,7 @@ namespace Simple_YouTube_Music_Player.Forms
                 {
                     edit.Enabled = false;
                     Functions.playlist.Clear();
-                    if (edit.Text.IndexOf("&list") > 0 || edit.Text.IndexOf("?list") > 0)
+                    if (edit.Text.IndexOf("&list") > 0 || edit.Text.IndexOf("?list") > 0 || edit.Text.IndexOf("videos") > 0)
                     {
                         loaderPic.Visible = true;
                     }
@@ -70,6 +70,7 @@ namespace Simple_YouTube_Music_Player.Forms
                     edit.Text = link;
                     Thread general = new Thread(new ParameterizedThreadStart(generalThread));
                     general.Start(edit);
+                    Discord.SetText("Получениие данных...","");
                 }
                 else
                 {
@@ -155,6 +156,7 @@ namespace Simple_YouTube_Music_Player.Forms
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBox1, "Двойной клик для сохранения")));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBoxSpectrum, "Клик - смена визуализации, Двойной клик - настройка цвета")));
             playerControl.playerControl.SetVolume(Functions.Volume);
+            Discord.SetTitle(data[0]);
         }
 
         public void SetLastData()
@@ -219,6 +221,7 @@ namespace Simple_YouTube_Music_Player.Forms
 
         private void PlayBtn_Click(object sender, EventArgs e)
         {
+            
             PictureBox pic = (PictureBox)sender;
             if (ready)
             {
@@ -226,10 +229,12 @@ namespace Simple_YouTube_Music_Player.Forms
                 bool control = playerControl.playerControl.PlayPause(_stream);
                 if (control)
                 {
+                    Discord.SetData(1);
                     pic.Image = Properties.Resources._021_pause;
                 }
                 else
                 {
+                    Discord.SetData(2);
                     pic.Image = Properties.Resources._013_play;
                 }
             }
@@ -273,6 +278,7 @@ namespace Simple_YouTube_Music_Player.Forms
 
             panelProgressTrack.Width = math2;
 #if DEBUG
+            var barLen = 456.0;
             debugPositionLabel.Visible = true;
             debugPositionLabel.Text = "Len: " + len.ToString() + "\r\nPos: " + pos.ToString()+"\r\nPosP: "+math.ToString()+"\r\nBarLen: "+
                 barLen.ToString()+"\r\nPosBar: "+math2.ToString()+"\r\nSpectrum type: "+Functions.SpectrumType.ToString();
@@ -306,7 +312,7 @@ namespace Simple_YouTube_Music_Player.Forms
                             break;
                     }
                     SetPlayerData(data);
-                    if(playerControl.playerControl.pause) Bass.BASS_ChannelPlay(_stream, false);
+                    if (playerControl.playerControl.pause) { Bass.BASS_ChannelPlay(_stream, false); Discord.SetData(1); }
                     // Set volume
                     float Volume = (float)volumeTrackBar.Value / 100;
                     Bass.BASS_ChannelSetAttribute(_stream, BASSAttribute.BASS_ATTRIB_VOL, Volume);
@@ -322,7 +328,7 @@ namespace Simple_YouTube_Music_Player.Forms
                 Bass.BASS_ChannelStop(_stream);
                 var data = Functions.PrevTrack();
                 SetPlayerData(data);
-                if (playerControl.playerControl.pause) Bass.BASS_ChannelPlay(_stream, false);
+                if (playerControl.playerControl.pause) { Bass.BASS_ChannelPlay(_stream, false); Discord.SetData(1); }
                 // Set volume
                 float Volume = (float)volumeTrackBar.Value / 100;
                 Bass.BASS_ChannelSetAttribute(_stream, BASSAttribute.BASS_ATTRIB_VOL, Volume);
@@ -356,6 +362,18 @@ namespace Simple_YouTube_Music_Player.Forms
                 //Next track
                 nextBtn_Click(sender, e);
                 Next = false;
+                // Join check
+                if (!String.IsNullOrEmpty(Functions.JoinID))
+                {
+                    ready = false;
+                    loaderPic.Visible = true;
+                    metroProgressSpinner1.Visible = true;
+                    spinerTimer.Enabled = true;
+                    Thread general = new Thread(new ParameterizedThreadStart(generalThread));
+                    general.Start(@"https://youtu.be/"+ Functions.JoinID);
+                    Discord.SetText("Получениие данных...", "");
+                    Functions.JoinID = "";
+                }
             }
         }
 

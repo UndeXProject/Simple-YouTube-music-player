@@ -35,7 +35,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Simple_YouTube_Music_Player\bin\Debug\File.dll</HintPath>
     </Reference>
-	<Reference Condition="'$(Configuration)' == 'Release'" Include="File, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="File, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Simple_YouTube_Music_Player\bin\Release\File.dll</HintPath>
     </Reference>
@@ -43,7 +43,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libvideo\bin\Debug\netstandard1.1\libvideo.dll</HintPath>
     </Reference>
-	<Reference Condition="'$(Configuration)' == 'Release'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Condition="'$(Configuration)' == 'Release'" Include="libvideo, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\libvideo\bin\Release\netstandard1.1\libvideo.dll</HintPath>
     </Reference>
