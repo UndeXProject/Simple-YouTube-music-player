@@ -18,7 +18,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
@@ -35,7 +35,7 @@
     <ApplicationIcon>Logo.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Condition="'$(Configuration)' == 'Debug'" Include="Bass.Net">
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="Bass.Net">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\Bass.Net.dll</HintPath>
     </Reference>
@@ -79,7 +79,7 @@
     <Reference Include="MetroFramework.Fonts, Version=1.2.0.3, Culture=neutral, PublicKeyToken=5f91a84759bf584a, processorArchitecture=MSIL">
       <HintPath>..\Simple_YouTube_Music_Player\MetroFramework.Fonts.dll</HintPath>
     </Reference>
-	<Reference Condition="'$(Configuration)' == 'Debug'" Include="playerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="playerControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\playerControl.dll</HintPath>
     </Reference>
@@ -87,7 +87,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Release\playerControl.dll</HintPath>
     </Reference>
-	<Reference Condition="'$(Configuration)' == 'Debug'" Include="DiscordRPC">
+    <Reference Condition="'$(Configuration)' == 'Debug'" Include="DiscordRPC">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\DiscordRPC.dll</HintPath>
     </Reference>

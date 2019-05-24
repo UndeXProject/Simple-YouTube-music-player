@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DiscordRPC;
@@ -13,7 +14,7 @@ namespace Simple_YouTube_Music_Player.Classes
 {
     public class Discord
     {
-        private static string AppDataDir = Functions.AppData;
+        private static string AppDataDir = Functions.AppDataSoft;
         public static string DisctordAppID { get; } = "<YOUR_APP_ID>";
         public static LogLevel DiscordLogLevel { get; private set; }
 
@@ -26,14 +27,22 @@ namespace Simple_YouTube_Music_Player.Classes
             Assets = new Assets()
             {
                 LargeImageKey = "logo",
+#if DEBUG
+                LargeImageText = "SYMP V2.0 [DEBUG MODE]",
+#else
                 LargeImageText = "SYMP V2.0",
+#endif
             }
         };
 
+#region Methods
+
+#region Init
         public static void Init()
         {
             client.RegisterUriScheme();
             var logFile = Path.Combine(AppDataDir, "discord-rpc.log");
+            //MessageBox.Show(logFile);
             //Set the logger. This way we can see the output of the client.
             //We can set it this way, but doing it directly in the constructor allows for the Register Uri Scheme to be logged too.
             System.IO.File.WriteAllBytes(logFile, new byte[0]);
@@ -61,20 +70,125 @@ namespace Simple_YouTube_Music_Player.Classes
                 //These secrets should contain enough data for external clients to be able to know which
                 // game to connect too. A simple approach would be just to use IP address, but this is highly discouraged
                 // and can leave your players vulnerable!
-                JoinSecret = null,
-                SpectateSecret = null
+                JoinSecret = "",
+                SpectateSecret = ""
             };
-            client.SetSubscription(EventType.Join | EventType.Spectate | EventType.JoinRequest);
             client.SetPresence(presence);
 
             //Initialize the connection. This must be called ONLY once.
             //It must be called before any updates are sent or received from the discord client.
             client.Initialize();
+            isRunning = true;
         }
+#endregion
 
-        #region Events
+#region SetTitle
+        public static void SetTitle(string TrackName)
+        {
+            presence = new RichPresence()
+            {
+                Details = "Слушает:",
+                State = TrackName,
+                Assets = new Assets()
+                {
+                    LargeImageKey = "logo",
+                    LargeImageText = TrackName,
+                    SmallImageKey = "stop",
+                    SmallImageText = "Стоп"
+                },
+                Party = new Party()
+                {
+                    ID = "",
+                    Max = 100,
+                    Size = 0
+                }
+            };
+            client.SetPresence(presence);
+        }
+#endregion
 
-        #region State Events
+#region SetText
+        public static void SetText(string Line1, string Line2)
+        {
+            presence = new RichPresence()
+            {
+                Details = Line1,
+                State = Line2,
+                Assets = new Assets()
+                {
+                    LargeImageKey = "logo",
+                    LargeImageText = Line1
+                }
+            };
+            client.SetPresence(presence);
+        }
+#endregion
+
+#region SetData
+        public static void SetData(int Mode)
+        {
+            Regex reg = new Regex("([0-9]{1,2}):([0-9]{1,2})");
+            Match m = reg.Match(Functions.playlist[Functions.PlaylistPosition][4]);
+            int duration = 0;
+            if (m.Groups[1].Length > 0)
+            {
+                int minuteToSec = Convert.ToInt32(m.Groups[1].Value) * 60;
+                int seconds = Convert.ToInt32(m.Groups[2].Value);
+                duration = minuteToSec + seconds;
+            }
+            presence = new RichPresence()
+            {
+                Details = "Слушает:",
+                State = Functions.playlist[Functions.PlaylistPosition][0],
+                Assets = new Assets()
+                {
+                    LargeImageKey = "logo",
+                    LargeImageText = Functions.playlist[Functions.PlaylistPosition][0],
+                    SmallImageKey = "stop",
+                    SmallImageText = "Стоп"
+                }
+            };
+            presence.Secrets = new Secrets()
+            {
+                SpectateSecret = Functions.playlist[Functions.PlaylistPosition][5]
+            };
+            presence.Party = new Party()
+            {
+                ID = @"https://youtu.be/"+Functions.playlist[Functions.PlaylistPosition][5],
+                Max = 100,
+                Size = 0
+            };
+            switch (Mode)
+            {
+                case 1:
+                    presence.Assets.SmallImageKey = "play";
+                    presence.Assets.SmallImageText = "Воспроизведение";
+                    presence.Timestamps = new Timestamps()
+                    {
+                        Start = DateTime.UtcNow,
+                        End = DateTime.UtcNow + TimeSpan.FromSeconds(duration)
+                    };
+                    break;
+                case 2:
+                    presence.Assets.SmallImageKey = "pause";
+                    presence.Assets.SmallImageText = "Пауза";
+                    presence.Timestamps = new Timestamps();
+                    break;
+                default:
+                    presence.Assets.SmallImageKey = "stop";
+                    presence.Assets.SmallImageText = "Стоп";
+                    presence.Timestamps = new Timestamps();
+                    break;
+            }
+            client.SetSubscription(EventType.Join | EventType.Spectate | EventType.JoinRequest);
+            client.SetPresence(presence);
+        }
+#endregion
+#endregion
+
+#region Events
+
+#region State Events
         private static void OnReady(object sender, ReadyMessage args)
         {
             //This is called when we are all ready to start receiving and sending discord events. 
@@ -99,9 +213,9 @@ namespace Simple_YouTube_Music_Player.Classes
             //Console.WriteLine("Error occured within discord. ({1}) {0}", args.Message, args.Code);
             //MessageBox.Show("Error occured within discord. (" + args.Code.ToString() + ") " + args.Message);
         }
-        #endregion
+#endregion
 
-        #region Pipe Connection Events
+#region Pipe Connection Events
         private static void OnConnectionEstablished(object sender, ConnectionEstablishedMessage args)
         {
             //This is called when a pipe connection is established. The connection is not ready yet, but we have at least found a valid pipe.
@@ -116,7 +230,7 @@ namespace Simple_YouTube_Music_Player.Classes
             //MessageBox.Show("Pipe Connection Failed. Could not connect to pipe #" + args.FailedPipe.ToString());
             isRunning = false;
         }
-        #endregion
+#endregion
 
         private static void OnPresenceUpdate(object sender, PresenceMessage args)
         {
@@ -125,7 +239,7 @@ namespace Simple_YouTube_Music_Player.Classes
             //Console.WriteLine("Rich Presence Updated. Playing {0}", args.Presence == null ? "Nothing (NULL)" : args.Presence.State);
         }
 
-        #region Subscription Events
+#region Subscription Events
         private static void OnSubscribe(object sender, SubscribeMessage args)
         {
             //This is called when the subscription has been made succesfully. It will return the event you subscribed too.
@@ -136,9 +250,9 @@ namespace Simple_YouTube_Music_Player.Classes
             //This is called when the unsubscription has been made succesfully. It will return the event you unsubscribed from.
             //Console.WriteLine("Unsubscribed: {0}", args.Event);
         }
-        #endregion
+#endregion
 
-        #region Join / Spectate feature
+#region Join / Spectate feature
         private static void OnJoin(object sender, JoinMessage args)
         {
             /*
@@ -166,6 +280,8 @@ namespace Simple_YouTube_Music_Player.Classes
 			 * This feature requires the RegisterURI to be true on the client.
 			*/
             //Console.WriteLine("Spectating Game '{0}'", args.Secret);
+            MessageBox.Show("[DiscordRPC] Получена ссылка на трек: '" + args.Secret + "'");
+            Functions.JoinID = args.Secret;
         }
 
         private static void OnJoinRequested(object sender, JoinRequestMessage args)
@@ -200,8 +316,8 @@ namespace Simple_YouTube_Music_Player.Classes
             //All done.
             //Console.WriteLine(" - Sent a {0} invite to the client {1}", accept ? "ACCEPT" : "REJECT", args.User.Username);
         }
-        #endregion
+#endregion
 
-        #endregion
+#endregion
     }
 }
