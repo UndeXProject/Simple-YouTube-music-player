@@ -74,6 +74,10 @@ namespace Simple_YouTube_Music_Player
                         if(arg[1] != "-noDiscord")
                             Discord.Init();
                     }
+                    else
+                    {
+                        Discord.Init();
+                    }
                 }
                 if (delay == 0) delayLogo = !delayLogo;
                 if (delay > 0) delay--;
