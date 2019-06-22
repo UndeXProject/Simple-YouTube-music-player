@@ -11,3 +11,4 @@ echo Build update.pkg for version %ver% complite.
 echo Open 7zip FM...
 7zFM update.pkg
 echo Complite!
+pause
