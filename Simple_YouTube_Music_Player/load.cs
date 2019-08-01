@@ -69,14 +69,17 @@ namespace Simple_YouTube_Music_Player
                     byteBassVer[3] = BitConverter.GetBytes(ver)[3];
                     Functions.verBass = byteBassVer[3].ToString()+"."+ byteBassVer[2].ToString() + "."+ byteBassVer[1].ToString() + "."+ byteBassVer[0].ToString();
                     string[] arg = Environment.GetCommandLineArgs();
-                    if (arg.Length > 1)
+                    if (Properties.Settings.Default.DiscordEnable != false)
                     {
-                        if(arg[1] != "-noDiscord")
-                            Discord.Init();
-                    }
-                    else
-                    {
-                        Discord.Init();
+                        if (arg.Length > 1)
+                        {
+                            if (arg[1] != "-noDiscord")
+                                Discord.Init(Discord.client);
+                        }
+                        else
+                        {
+                            Discord.Init(Discord.client);
+                        }
                     }
                 }
                 if (delay == 0) delayLogo = !delayLogo;

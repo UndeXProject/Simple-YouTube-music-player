@@ -511,5 +511,43 @@ namespace Simple_YouTube_Music_Player.Forms
                 Functions.SpectrumColor2 = color2.Color;
             }
         }
+
+        private void Label1_MouseEnter(object sender, EventArgs e)
+        {
+            Label self = (Label)sender;
+            self.BackColor = SystemColors.Control;
+        }
+
+        private void Label1_MouseLeave(object sender, EventArgs e)
+        {
+            Label self = (Label)sender;
+            self.BackColor = Color.White;
+        }
+
+        private void Label1_MouseDown(object sender, MouseEventArgs e)
+        {
+            Label self = (Label)sender;
+            if(e.Button == MouseButtons.Left)
+            {
+                self.BackColor = Color.FromArgb(0, 174, 219);
+                self.ForeColor = Color.White;
+            }
+        }
+
+        private void Label1_MouseUp(object sender, MouseEventArgs e)
+        {
+            Label self = (Label)sender;
+            if (e.Button == MouseButtons.Left)
+            {
+                self.BackColor = Color.White;
+                self.ForeColor = Color.Black;
+            }
+        }
+
+        private void Label1_Click(object sender, EventArgs e)
+        {
+            settings form = new settings();
+            form.ShowDialog();
+        }
     }
 }

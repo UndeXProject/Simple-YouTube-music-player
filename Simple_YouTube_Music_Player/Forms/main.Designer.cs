@@ -57,6 +57,7 @@
             this.nextTrackWD = new System.Windows.Forms.Timer(this.components);
             this.colorDialog = new System.Windows.Forms.ColorDialog();
             this.modeToolTip = new MetroFramework.Components.MetroToolTip();
+            this.label1 = new System.Windows.Forms.Label();
             this.generalPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSpectrum)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -328,11 +329,31 @@
             this.modeToolTip.Style = MetroFramework.MetroColorStyle.Blue;
             this.modeToolTip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Font = new System.Drawing.Font("Verdana", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.label1.Location = new System.Drawing.Point(430, 5);
+            this.label1.Name = "label1";
+            this.label1.Padding = new System.Windows.Forms.Padding(1);
+            this.label1.Size = new System.Drawing.Size(23, 20);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "☰";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label1.Click += new System.EventHandler(this.Label1_Click);
+            this.label1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Label1_MouseDown);
+            this.label1.MouseEnter += new System.EventHandler(this.Label1_MouseEnter);
+            this.label1.MouseLeave += new System.EventHandler(this.Label1_MouseLeave);
+            this.label1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Label1_MouseUp);
+            // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(508, 292);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.debugPositionLabel);
             this.Controls.Add(this.metroPanel2);
             this.Controls.Add(this.metroPanel1);
@@ -401,5 +422,6 @@
         private System.Windows.Forms.Timer nextTrackWD;
         private System.Windows.Forms.ColorDialog colorDialog;
         public MetroFramework.Components.MetroToolTip modeToolTip;
+        private System.Windows.Forms.Label label1;
     }
 }

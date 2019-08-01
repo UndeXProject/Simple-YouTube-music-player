@@ -114,11 +114,20 @@
   <ItemGroup>
     <Compile Include="Classes\Discord.cs" />
     <Compile Include="Classes\Functions.cs" />
+    <Compile Include="Classes\HToolBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Forms\main.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\main.Designer.cs">
       <DependentUpon>main.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\settings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\settings.Designer.cs">
+      <DependentUpon>settings.cs</DependentUpon>
     </Compile>
     <Compile Include="load.cs">
       <SubType>Form</SubType>
@@ -130,6 +139,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\main.resx">
       <DependentUpon>main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\settings.resx">
+      <DependentUpon>settings.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="load.resx">
       <DependentUpon>load.cs</DependentUpon>

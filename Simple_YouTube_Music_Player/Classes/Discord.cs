@@ -12,13 +12,22 @@ using DiscordRPC.Message;
 
 namespace Simple_YouTube_Music_Player.Classes
 {
+    public class DiscordUserInfo
+    {
+        public static bool Ready = false;
+        public static User User { get; internal set; }
+        public static MessageType Message { get; internal set; }
+        public static DateTime Time { get; internal set; }
+        public static Configuration Config { get; internal set; }
+        public static int RPCVersion { get; internal set; }
+    }
     public class Discord
     {
         private static string AppDataDir = Functions.AppDataSoft;
-        public static string DisctordAppID { get; } = "<YOUR_APP_ID>";
+        public static string DisctordAppID { get; } = "512578174115381249";
         public static LogLevel DiscordLogLevel { get; private set; }
 
-        private static DiscordRpcClient client =  new DiscordRpcClient(DisctordAppID);
+        public static DiscordRpcClient client =  new DiscordRpcClient(DisctordAppID);
         private static bool isRunning = true;
         private static RichPresence presence = new RichPresence()
         {
@@ -35,10 +44,15 @@ namespace Simple_YouTube_Music_Player.Classes
             }
         };
 
+        public static void DisableClient()
+        {
+            client.Dispose();
+        }
+
 #region Methods
 
 #region Init
-        public static void Init()
+        public static void Init(DiscordRpcClient client)
         {
             client.RegisterUriScheme();
             var logFile = Path.Combine(AppDataDir, "discord-rpc.log");
@@ -197,7 +211,11 @@ namespace Simple_YouTube_Music_Player.Classes
             //It can be a good idea to send a inital presence update on this event too, just to setup the inital game state.
             //Console.WriteLine("On Ready. RPC Version: {0}", args.Version);
             //MessageBox.Show("On Ready. RPC Version: "+ args.Version.ToString());
-
+            DiscordUserInfo.User = args.User;
+            DiscordUserInfo.Config = args.Configuration;
+            DiscordUserInfo.Message = args.Type;
+            DiscordUserInfo.Time = args.TimeCreated;
+            DiscordUserInfo.RPCVersion = args.Version;
         }
         private static void OnClose(object sender, CloseMessage args)
         {
