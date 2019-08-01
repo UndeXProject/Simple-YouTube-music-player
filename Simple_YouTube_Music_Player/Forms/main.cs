@@ -143,7 +143,11 @@ namespace Simple_YouTube_Music_Player.Forms
         {
             Bass.BASS_ChannelStop(_stream);
             Bitmap bmp = new Bitmap((new WebClient()).OpenRead(data[2]));
+
             screen = new Bitmap(bmp, 456, 153);
+#if DEBUG
+            Functions.SetColor(bmp);
+#endif
             pictureBox1.Image = screen;
             _stream = Bass.BASS_StreamCreateURL(data[1], 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
             Bass.BASS_ChannelSetSync(_stream, BASSSync.BASS_SYNC_END | BASSSync.BASS_SYNC_MIXTIME,0, _mySync, IntPtr.Zero);
@@ -156,8 +160,10 @@ namespace Simple_YouTube_Music_Player.Forms
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBox1, "Двойной клик для сохранения")));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBoxSpectrum, "Клик - смена визуализации, Двойной клик - настройка цвета")));
             playerControl.playerControl.SetVolume(Functions.Volume);
+
             Discord.SetTitle(data[0]);
         }
+
 
         public void SetLastData()
         {
