@@ -9,6 +9,7 @@ cd ..\..\..\
 echo %ver% > .version
 echo Build update.pkg for version %ver% complite.
 echo Open 7zip FM...
+%SystemRoot%\explorer.exe "%CD%\Simple_YouTube_Music_Player\bin\Release"
 7zFM update.pkg
 echo Complite!
 pause

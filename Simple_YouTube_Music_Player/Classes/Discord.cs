@@ -26,10 +26,11 @@ namespace Simple_YouTube_Music_Player.Classes
             State = "https://discord.gg/RyG8NUr",
             Assets = new Assets()
             {
-                LargeImageKey = "logo",
 #if DEBUG
+                LargeImageKey = "logo_debug",
                 LargeImageText = "SYMP V2.0 [DEBUG MODE]",
 #else
+                LargeImageKey = "logo",
                 LargeImageText = "SYMP V2.0",
 #endif
             }
@@ -91,16 +92,14 @@ namespace Simple_YouTube_Music_Player.Classes
                 State = TrackName,
                 Assets = new Assets()
                 {
+#if DEBUG
+                    LargeImageKey = "logo_debug",
+#else
                     LargeImageKey = "logo",
+#endif
                     LargeImageText = TrackName,
                     SmallImageKey = "stop",
                     SmallImageText = "Стоп"
-                },
-                Party = new Party()
-                {
-                    ID = "",
-                    Max = 100,
-                    Size = 0
                 }
             };
             client.SetPresence(presence);
@@ -116,7 +115,11 @@ namespace Simple_YouTube_Music_Player.Classes
                 State = Line2,
                 Assets = new Assets()
                 {
+#if DEBUG
+                    LargeImageKey = "logo_debug",
+#else
                     LargeImageKey = "logo",
+#endif
                     LargeImageText = Line1
                 }
             };
@@ -142,8 +145,13 @@ namespace Simple_YouTube_Music_Player.Classes
                 State = Functions.playlist[Functions.PlaylistPosition][0],
                 Assets = new Assets()
                 {
+#if DEBUG
+                    LargeImageKey = "logo_debug",
+                    LargeImageText = "SYMP DebugMode      (Процесс разработки)",
+#else
                     LargeImageKey = "logo",
                     LargeImageText = Functions.playlist[Functions.PlaylistPosition][0],
+#endif
                     SmallImageKey = "stop",
                     SmallImageText = "Стоп"
                 }
@@ -151,12 +159,6 @@ namespace Simple_YouTube_Music_Player.Classes
             presence.Secrets = new Secrets()
             {
                 SpectateSecret = Functions.playlist[Functions.PlaylistPosition][5]
-            };
-            presence.Party = new Party()
-            {
-                ID = @"https://youtu.be/"+Functions.playlist[Functions.PlaylistPosition][5],
-                Max = 100,
-                Size = 0
             };
             switch (Mode)
             {

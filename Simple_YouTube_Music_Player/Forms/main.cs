@@ -143,7 +143,11 @@ namespace Simple_YouTube_Music_Player.Forms
         {
             Bass.BASS_ChannelStop(_stream);
             Bitmap bmp = new Bitmap((new WebClient()).OpenRead(data[2]));
+
             screen = new Bitmap(bmp, 456, 153);
+
+            Functions.SetColor(bmp);
+
             pictureBox1.Image = screen;
             _stream = Bass.BASS_StreamCreateURL(data[1], 0, BASSFlag.BASS_DEFAULT, null, IntPtr.Zero);
             Bass.BASS_ChannelSetSync(_stream, BASSSync.BASS_SYNC_END | BASSSync.BASS_SYNC_MIXTIME,0, _mySync, IntPtr.Zero);
@@ -154,10 +158,12 @@ namespace Simple_YouTube_Music_Player.Forms
             metroProgressSpinner1.Invoke((MethodInvoker)(() => spinerTimer.Enabled = false));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(labelCurrentTrack, "Кликните для копирования ссылки на видео")));
             metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBox1, "Двойной клик для сохранения")));
-            metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBoxSpectrum, "Клик - смена визуализации, Двойной клик - настройка цвета")));
+            metroProgressSpinner1.Invoke((MethodInvoker)(() => metroToolTip.SetToolTip(pictureBoxSpectrum, "Клик - смена визуализации")));
             playerControl.playerControl.SetVolume(Functions.Volume);
+
             Discord.SetTitle(data[0]);
         }
+
 
         public void SetLastData()
         {
@@ -494,22 +500,22 @@ namespace Simple_YouTube_Music_Player.Forms
 
         private void PictureBoxSpectrum_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Right)
-            {
-                ColorDialog color1 = new ColorDialog();
-                ColorDialog color2 = new ColorDialog();
-                var message = MessageBox.Show("Настроить цвета спектра?\rПервый цвет - низ градиента\r\nВторой - верх градиента", "Настроить цвета?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-                if (message == DialogResult.No)
-                    return;
-                var result = color1.ShowDialog();
-                if (result == DialogResult.Cancel)
-                    return;
-                result = color2.ShowDialog();
-                if (result == DialogResult.Cancel)
-                    return;
-                Functions.SpectrumColor1 = color1.Color;
-                Functions.SpectrumColor2 = color2.Color;
-            }
+            //if(e.Button == MouseButtons.Right)
+            //{
+            //    ColorDialog color1 = new ColorDialog();
+            //    ColorDialog color2 = new ColorDialog();
+            //    var message = MessageBox.Show("Настроить цвета спектра?\rПервый цвет - низ градиента\r\nВторой - верх градиента", "Настроить цвета?", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            //    if (message == DialogResult.No)
+            //        return;
+            //    var result = color1.ShowDialog();
+            //    if (result == DialogResult.Cancel)
+            //        return;
+            //    result = color2.ShowDialog();
+            //    if (result == DialogResult.Cancel)
+            //        return;
+            //    Functions.SpectrumColor1 = color1.Color;
+            //    Functions.SpectrumColor2 = color2.Color;
+            //}
         }
     }
 }

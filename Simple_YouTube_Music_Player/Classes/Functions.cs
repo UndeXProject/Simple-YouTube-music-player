@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Net;
+using System.Threading;
 using System.Windows.Forms;
 using Un4seen.Bass;
 using Un4seen.Bass.Misc;
@@ -29,6 +31,7 @@ namespace Simple_YouTube_Music_Player.Classes
 
         public static Color SpectrumColor1 = Properties.Settings.Default.SpectrumColor1;
         public static Color SpectrumColor2 = Properties.Settings.Default.SpectrumColor2;
+        private static Color SpectrumColor3 = Color.DarkBlue;
         public static void OnCloseApp(EventArgs e)
         {
             foreach (var process in Process.GetProcessesByName("cache.tmp"))
@@ -141,12 +144,12 @@ namespace Simple_YouTube_Music_Player.Classes
                 break;
                 case 2:
                     Spectrum = SpectrumCreater.CreateSpectrumBean(stream, width, height,
-                                SpectrumColor1, SpectrumColor2, Color.Transparent, 2,
+                                SpectrumColor1, SpectrumColor2, Color.Transparent, 1,
                                   false, false, true);
                 break;
                 case 3:
                     Spectrum = SpectrumCreater.CreateSpectrumEllipse(stream, width, height,
-                                SpectrumColor1, SpectrumColor2, Color.Transparent, 2, 2,
+                                SpectrumColor1, SpectrumColor2, Color.Transparent, 1, 1,
                                   false, false, true);
                 break;
                 case 4:
@@ -156,7 +159,7 @@ namespace Simple_YouTube_Music_Player.Classes
                 break;
                 case 5:
                     Spectrum = SpectrumCreater.CreateSpectrumLinePeak(stream, width, height,
-                                SpectrumColor1, SpectrumColor2, Color.DarkBlue, Color.Transparent, 3, 3, 2, 4,
+                                SpectrumColor1, SpectrumColor2, SpectrumColor3, Color.Transparent, 3, 3, 2, 3,
                                   false, false, true);
                 break;
                 case 6:
@@ -189,5 +192,80 @@ namespace Simple_YouTube_Music_Player.Classes
                 );
             }
         }
+
+        #region Работа с цветом
+        /// <summary>
+        /// Запуск потока для установки цвета
+        /// </summary>
+        /// <param name="bmp">Обрабатываемое изображение</param>
+        public static void SetColor(Bitmap bmp)
+        {
+            Thread color = new Thread(new ParameterizedThreadStart(SetColors));
+            color.Start(bmp);
+        }
+
+        /// <summary>
+        /// Поток для установки цвета в фоне
+        /// </summary>
+        /// <param name="bmp">Обрабатываемое изображение</param>
+        private static void SetColors(object bmp)
+        {
+            Bitmap img = (Bitmap)bmp;
+            Color[] c = GetColors(img);
+            SpectrumColor1 = c[0];
+            SpectrumColor2 = c[1];
+            SpectrumColor3 = c[3];
+        }
+
+        /// <summary>
+        /// Выборка основных цветов на изображении
+        /// </summary>
+        /// <param name="bmp">Обрабатываемое изображение</param>
+        /// <returns>Массив основных цветов (5 шт). Расчет от 50% цветов, в меньшую сторону.</returns>
+        private static Color[] GetColors(Bitmap bmp)
+        {
+            var h = new Dictionary<string, int>();
+            for (int x = 0; x < bmp.Width; x++)
+            {
+                for (int y = 0; y < bmp.Height; y++)
+                {
+                    Color clr = bmp.GetPixel(x, y);
+                    int res;
+                    if (h.TryGetValue(HexConverter(clr), out res))
+                        h[HexConverter(clr)] += 1;
+                    else
+                        h.Add(HexConverter(clr), 1);
+                }
+            }
+            var ordered = h.OrderBy(x => x.Value);
+            var dic = ordered.ToDictionary((keyItem) => keyItem.Key, (valueItem) => valueItem.Value);
+            List<string> o = dic.Keys.ToList();
+            var r1 = ColorTranslator.FromHtml(o[o.Count / 2]);
+            var r2 = ColorTranslator.FromHtml(o[o.Count / 4]);
+            var r3 = ColorTranslator.FromHtml(o[o.Count / 6]);
+            var r4 = ColorTranslator.FromHtml(o[o.Count / 8]);
+            var r5 = ColorTranslator.FromHtml(o[o.Count / 10]);
+            Color[] t = { r1, r2, r3, r4, r5 };
+            return t;
+        }
+        /// <summary>
+        /// Инвертирование цвета
+        /// </summary>
+        /// <param name="c">Цвет</param>
+        /// <returns>Инвертированный цвет</returns>
+        public Color invert(Color c)
+        {
+            return Color.FromArgb(c.A, 0xFF - c.R, 0xFF - c.G, 0xFF - c.B);
+        }
+        /// <summary>
+        /// Конвертер Color в HEX
+        /// </summary>
+        /// <param name="c">Цвет</param>
+        /// <returns>String значение цвета в hex формате. А-ля html</returns>
+        private static String HexConverter(System.Drawing.Color c)
+        {
+            return "#" + c.R.ToString("X2") + c.G.ToString("X2") + c.B.ToString("X2");
+        }
+        #endregion
     }
 }
