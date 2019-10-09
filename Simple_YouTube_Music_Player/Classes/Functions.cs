@@ -144,12 +144,12 @@ namespace Simple_YouTube_Music_Player.Classes
                 break;
                 case 2:
                     Spectrum = SpectrumCreater.CreateSpectrumBean(stream, width, height,
-                                SpectrumColor1, SpectrumColor2, Color.Transparent, 2,
+                                SpectrumColor1, SpectrumColor2, Color.Transparent, 1,
                                   false, false, true);
                 break;
                 case 3:
                     Spectrum = SpectrumCreater.CreateSpectrumEllipse(stream, width, height,
-                                SpectrumColor1, SpectrumColor2, Color.Transparent, 2, 2,
+                                SpectrumColor1, SpectrumColor2, Color.Transparent, 1, 1,
                                   false, false, true);
                 break;
                 case 4:
@@ -159,7 +159,7 @@ namespace Simple_YouTube_Music_Player.Classes
                 break;
                 case 5:
                     Spectrum = SpectrumCreater.CreateSpectrumLinePeak(stream, width, height,
-                                SpectrumColor1, SpectrumColor2, SpectrumColor3, Color.Transparent, 3, 3, 2, 4,
+                                SpectrumColor1, SpectrumColor2, SpectrumColor3, Color.Transparent, 3, 3, 2, 3,
                                   false, false, true);
                 break;
                 case 6:
