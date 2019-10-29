@@ -162,6 +162,7 @@ namespace Simple_YouTube_Music_Player.Forms
             playerControl.playerControl.SetVolume(Functions.Volume);
 
             Discord.SetTitle(data[0]);
+            System.IO.File.WriteAllText(Path.Combine(Functions.AppDataSoft, "CurrentTrack.txt"), data[0]);
         }
 
 
