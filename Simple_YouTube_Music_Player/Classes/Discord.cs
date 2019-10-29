@@ -15,7 +15,7 @@ namespace Simple_YouTube_Music_Player.Classes
     public class Discord
     {
         private static string AppDataDir = Functions.AppDataSoft;
-        public static string DisctordAppID { get; } = "<YOUR_APP_ID>";
+        public static string DisctordAppID { get; } = "512578174115381249";
         public static LogLevel DiscordLogLevel { get; private set; }
 
         private static DiscordRpcClient client =  new DiscordRpcClient(DisctordAppID);
